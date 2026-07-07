@@ -22,6 +22,17 @@ class AntigravityAgent(BaseAgent):
 
     SUPPORTS_ATIF = True
 
+    DEFAULT_SKILL_PATHS = [
+        "~/.openhands-sdk/skills",
+        "~/.claude/skills",
+        "~/.codex/skills",
+        "~/.agents/skills",
+        "~/.goose/skills",
+        "~/.gemini/skills",
+        "~/.factory/skills",
+        "~/.opencode/skill",
+    ]
+
     _RUNNER_FILENAME = "antigravity_runner.py"
     _OUTPUT_FILENAME = "antigravity_agent.txt"
     _TRAJECTORY_FILENAME = "trajectory.json"
@@ -30,10 +41,16 @@ class AntigravityAgent(BaseAgent):
         self,
         *args: Any,
         extra_env: dict[str, str] | None = None,
+        reasoning_effort: str | None = "medium",
+        load_skills: bool = True,
+        skill_paths: list[str] | None = None,
         **kwargs: Any,
     ) -> None:
         super().__init__(*args, **kwargs)
         self._extra_env = extra_env or {}
+        self._reasoning_effort = reasoning_effort
+        self._load_skills = load_skills
+        self._skill_paths = skill_paths or self.DEFAULT_SKILL_PATHS
 
     @staticmethod
     def name() -> str:
@@ -98,13 +115,42 @@ class AntigravityAgent(BaseAgent):
             f"> {logs_dir}/{self._OUTPUT_FILENAME} 2>&1"
         )
 
-        await environment.exec(
-            command=command,
-            env={
-                "GEMINI_API_KEY": gemini_api_key,
-                "MODEL_NAME": model_name,
-            },
-        )
+        env = {
+            "GEMINI_API_KEY": gemini_api_key,
+            "MODEL_NAME": model_name,
+            "REASONING_EFFORT": self._reasoning_effort or "medium",
+            "AGENT_LOGS_DIR": logs_dir,
+            "TRAJECTORY_PATH": trajectory_path,
+        }
+
+        skills_paths = []
+        if self._load_skills:
+            if self.skills_dir:
+                skills_paths.append(self.skills_dir)
+            for path in self._skill_paths:
+                if path not in skills_paths:
+                    skills_paths.append(path)
+        env["SKILLS_PATHS_JSON"] = json.dumps(skills_paths)
+
+        if self.mcp_servers:
+            mcp_list: list[dict[str, Any]] = []
+            for server in self.mcp_servers:
+                entry: dict[str, Any] = {
+                    "name": server.name,
+                    "transport": server.transport,
+                }
+                if server.transport == "stdio":
+                    if server.command:
+                        entry["command"] = server.command
+                    if server.args:
+                        entry["args"] = server.args
+                else:
+                    if server.url:
+                        entry["url"] = server.url
+                mcp_list.append(entry)
+            env["MCP_SERVERS_JSON"] = json.dumps(mcp_list)
+
+        await environment.exec(command=command, env=env)
 
     def populate_context_post_run(self, context: AgentContext) -> None:
         trajectory_path = self.logs_dir / self._TRAJECTORY_FILENAME
