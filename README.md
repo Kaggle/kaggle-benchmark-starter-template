@@ -51,8 +51,7 @@ harbor run \
 
 ## Reusable Skill
 
-Install the agent skill with the Vercel
-[skills CLI](https://github.com/vercel-labs/skills):
+Install the agent skill with the Vercel [skills CLI](https://github.com/vercel-labs/skills) to get started building with Kaggle.
 
 ```bash
 npx skills add https://github.com/ivanleomk/kaggle-benchmark-starter-template/tree/main/.agents/skills/kaggle-harbor-benchmark
@@ -68,8 +67,3 @@ The skill keeps `SKILL.md` brief and stores details in references:
   agents, ATIF, and links to sample implementations in this repo.
 - `references/debug.md`: local Harbor runs, runner image smoke tests,
   Docker-in-Docker notes, model proxy debugging, and named job evidence.
-
-This follows the Vercel skill format and Phil Schmid's guidance to keep skills
-lean, testable, and progressively disclosed:
-[testing skills](https://www.philschmid.de/testing-skills) and
-[writing lean skills](https://www.philschmid.de/agent-skills-tips).
