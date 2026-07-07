@@ -1,8 +1,12 @@
 # Kaggle Benchmark Starter Template
 
-A minimal Harbor dataset with one task: `ivanleomk/hello-world`.
+Use this template to publish a benchmark on Kaggle using the Harbor-compatible
+benchmark spec. Define one or more tasks in this repo, validate them locally
+with Harbor, then push the repo and run the packaged runner smoke test against
+the exact commit you want Kaggle to evaluate.
 
-The task asks an agent to create `/app/hello.txt` with the content
+This starter includes one example task, `ivanleomk/hello-world`, which asks an
+agent to create `/app/hello.txt` with the content
 `Hello, world!`.
 
 ## Files
