@@ -1,15 +1,38 @@
 # Kaggle Benchmark Starter Template
 
-Use this template to publish a benchmark on Kaggle using the Harbor-compatible
-benchmark spec. Define one or more tasks in this repo, validate them locally
-with Harbor, then push the repo and run the packaged runner smoke test against
-the exact commit you want Kaggle to evaluate.
+This repository is a starter template that shows how to publish a dataset and
+benchmark on Kaggle using the Harbor-compatible benchmark spec. The examples in
+this starter show how to structure benchmark tasks, validate them locally with
+Harbor, and run the same payload through the packaged runner flow that Kaggle
+can evaluate.
 
 This starter includes one example task, `ivanleomk/hello-world`, which asks an
 agent to create `/app/hello.txt` with the content
 `Hello, world!`.
 
-## Files
+## Contents
+
+Follow these steps when creating a benchmark from this template:
+
+1. Create a Kaggle organization and wait for approval.
+2. Install and authenticate the Kaggle CLI.
+3. Generate local model proxy credentials.
+4. Test the model proxy.
+5. Run the benchmark locally with Harbor.
+6. Push the repo and smoke test the packaged runner payload.
+7. Publish multi-architecture runner images, if you maintain your own runner.
+
+You can complete the local Harbor and model proxy steps while waiting for Kaggle
+organization approval.
+
+## Kaggle Organization Approval
+
+Create a Kaggle organization for the benchmark publisher account and make sure
+it is approved before publishing the final dataset and benchmark. Approval is
+only required for publishing; you can still install the CLI, generate model
+proxy credentials, and validate this repo locally while waiting.
+
+## Repository Layout
 
 - `dataset.toml`: Harbor dataset manifest.
 - `tasks/hello-world/`: Harbor task definition, environment, solution, and tests.
