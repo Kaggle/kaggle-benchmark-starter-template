@@ -1,0 +1,76 @@
+{
+    "schema_version": 1,
+    "created_at": "2026-07-07T04:05:15.796077Z",
+    "harbor": {
+        "version": "0.13.0",
+        "is_editable": false
+    },
+    "invocation": [
+        "/Users/ivanleo/.local/bin/harbor",
+        "run",
+        "-p",
+        "tasks/hello-world",
+        "--agent-import-path",
+        "agents.antigravity_agent:AntigravityAgent",
+        "-m",
+        "google/gemini-3.5-flash",
+        "-n",
+        "1",
+        "--force-build",
+        "--ae",
+        "GEMINI_API_KEY=${GEMINI_API_KEY}",
+        "-y"
+    ],
+    "n_concurrent_trials": 1,
+    "retry": {
+        "max_retries": 0,
+        "exclude_exceptions": [
+            "RewardFileEmptyError",
+            "RewardFileNotFoundError",
+            "AgentTimeoutError",
+            "VerifierOutputParseError",
+            "VerifierTimeoutError"
+        ],
+        "wait_multiplier": 1.0,
+        "min_wait_sec": 1.0,
+        "max_wait_sec": 60.0
+    },
+    "trials": [
+        {
+            "task": {
+                "name": "hello-world",
+                "type": "local",
+                "digest": "sha256:d6f52c75fe1a7ca0264e8b90000c5aef926d0bbe18d767aa0e832db4d3d87768",
+                "path": "tasks/hello-world"
+            },
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "import_path": "agents.antigravity_agent:AntigravityAgent",
+                "model_name": "google/gemini-3.5-flash",
+                "skills": [],
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "env": {
+                    "GEMINI_API_KEY": "${GEMINI_API_KEY}"
+                },
+                "mcp_servers": []
+            },
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": true,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "env": {},
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "env": {},
+                "disable": false
+            }
+        }
+    ]
+}

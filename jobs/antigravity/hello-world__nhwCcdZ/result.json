@@ -1,0 +1,113 @@
+{
+    "id": "f136f82a-04e4-4f71-8763-d5f619dcf49e",
+    "task_name": "ivanleomk/hello-world",
+    "trial_name": "hello-world__nhwCcdZ",
+    "trial_uri": "file:///Users/ivanleo/Documents/coding/kaggle-template-starter/jobs/2026-07-06__21-05-15/hello-world__nhwCcdZ",
+    "task_id": {
+        "path": "tasks/hello-world"
+    },
+    "source": null,
+    "task_checksum": "c64d6a888ab110046e5e703eb505ab916b7dafc17707c3aa39d6b068bbd92934",
+    "config": {
+        "task": {
+            "path": "tasks/hello-world",
+            "git_url": null,
+            "git_commit_id": null,
+            "name": null,
+            "ref": null,
+            "overwrite": false,
+            "download_dir": null,
+            "source": null
+        },
+        "trial_name": "hello-world__nhwCcdZ",
+        "trials_dir": "jobs/2026-07-06__21-05-15",
+        "timeout_multiplier": 1.0,
+        "agent_timeout_multiplier": null,
+        "verifier_timeout_multiplier": null,
+        "agent_setup_timeout_multiplier": null,
+        "environment_build_timeout_multiplier": null,
+        "agent": {
+            "name": null,
+            "import_path": "agents.antigravity_agent:AntigravityAgent",
+            "model_name": "google/gemini-3.5-flash",
+            "skills": [],
+            "override_timeout_sec": null,
+            "override_setup_timeout_sec": null,
+            "max_timeout_sec": null,
+            "extra_allowed_hosts": [],
+            "kwargs": {},
+            "env": {
+                "GEMINI_API_KEY": "${GEMINI_API_KEY}"
+            },
+            "mcp_servers": []
+        },
+        "environment": {
+            "type": "docker",
+            "import_path": null,
+            "force_build": true,
+            "delete": true,
+            "cpu_enforcement_policy": "auto",
+            "memory_enforcement_policy": "auto",
+            "override_cpus": null,
+            "override_memory_mb": null,
+            "override_storage_mb": null,
+            "override_gpus": null,
+            "override_tpu": null,
+            "mounts": null,
+            "extra_docker_compose": [],
+            "env": {},
+            "kwargs": {},
+            "extra_allowed_hosts": []
+        },
+        "verifier": {
+            "override_timeout_sec": null,
+            "max_timeout_sec": null,
+            "env": {},
+            "disable": false
+        },
+        "artifacts": [],
+        "extra_instruction_paths": [],
+        "job_id": "4d50f12c-7eb3-42c0-a2ba-94a8df7af86e"
+    },
+    "agent_info": {
+        "name": "custom-antigravity",
+        "version": "template",
+        "model_info": {
+            "name": "gemini-3.5-flash",
+            "provider": "google"
+        }
+    },
+    "agent_result": {
+        "n_input_tokens": 11005,
+        "n_cache_tokens": 0,
+        "n_output_tokens": 86,
+        "cost_usd": 0.0,
+        "rollout_details": null,
+        "metadata": null
+    },
+    "verifier_result": {
+        "rewards": {
+            "reward": 1.0
+        }
+    },
+    "exception_info": null,
+    "started_at": "2026-07-07T04:05:17.460000Z",
+    "finished_at": "2026-07-07T04:06:06.986425Z",
+    "environment_setup": {
+        "started_at": "2026-07-07T04:05:17.478985Z",
+        "finished_at": "2026-07-07T04:05:19.313710Z"
+    },
+    "agent_setup": {
+        "started_at": "2026-07-07T04:05:19.313809Z",
+        "finished_at": "2026-07-07T04:05:32.019468Z"
+    },
+    "agent_execution": {
+        "started_at": "2026-07-07T04:05:32.019676Z",
+        "finished_at": "2026-07-07T04:05:47.953986Z"
+    },
+    "verifier": {
+        "started_at": "2026-07-07T04:05:48.618513Z",
+        "finished_at": "2026-07-07T04:05:56.190650Z"
+    },
+    "step_results": null
+}

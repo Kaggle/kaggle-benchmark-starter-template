@@ -1,0 +1,85 @@
+{
+  "schema_version": "ATIF-v1.7",
+  "session_id": "harbor-session",
+  "agent": {
+    "name": "custom-antigravity",
+    "version": "0.1.1"
+  },
+  "steps": [
+    {
+      "step_id": 1,
+      "timestamp": null,
+      "source": "user",
+      "message": "Create a file at `/app/hello.txt` containing exactly:\n\n```text\nHello, world!\n```\n"
+    },
+    {
+      "step_id": 2,
+      "timestamp": null,
+      "source": "agent",
+      "message": "",
+      "model_name": "gemini-3.5-flash",
+      "metrics": {
+        "prompt_tokens": 11005,
+        "completion_tokens": 86,
+        "cached_tokens": 0
+      },
+      "reasoning_content": "**Clarifying The Requirements**\n\nI'm focusing now on the precise wording of the prompt regarding the text to be written. The key is in the phrase \"containing exactly\" which helps to determine if the newline character should be included. I'm carefully reading the prompt to confirm. My intention is to avoid making any assumptions.\n\n\n**Defining The Output**\n\nI'm now determining the necessary parameters for the `write_to_file` function. The target file is set to `/app/hello.txt`. I will need to set the `Overwrite` parameter to true or false. I need to now determine if it needs to overwrite or not, to keep the output safe, which I will decide when I encounter existing files. I'm leaning toward including the newline character (\"Hello, world!\\n\") as it's typical for text files, but I will write it as `Hello, world!` to be extra safe.\n\n\n"
+    },
+    {
+      "step_id": 3,
+      "timestamp": null,
+      "source": "agent",
+      "message": "Create hello.txt",
+      "model_name": "gemini-3.5-flash",
+      "tool_calls": [
+        {
+          "tool_call_id": "40f7e9407e36dd21cfff59aeceb5f82c:2",
+          "function_name": "edit_file",
+          "arguments": {
+            "file_path": "/app/hello.txt",
+            "diff_block": [
+              {
+                "start_line": 0,
+                "end_line": 0,
+                "lines": [
+                  {
+                    "text": "Hello, world!",
+                    "action": "LINE_ACTION_INSERT"
+                  },
+                  {
+                    "text": "",
+                    "action": "LINE_ACTION_INSERT"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "step_id": 4,
+      "timestamp": null,
+      "source": "agent",
+      "message": "View hello.txt",
+      "model_name": "gemini-3.5-flash",
+      "tool_calls": [
+        {
+          "tool_call_id": "40f7e9407e36dd21cfff59aeceb5f82c:3",
+          "function_name": "view_file",
+          "arguments": {
+            "file_path": "/app/hello.txt",
+            "start_line": 0,
+            "end_line": 1
+          }
+        }
+      ]
+    }
+  ],
+  "final_metrics": {
+    "total_prompt_tokens": 11005,
+    "total_completion_tokens": 86,
+    "total_cached_tokens": 0,
+    "total_cost_usd": 0.0
+  }
+}

@@ -1,0 +1,83 @@
+{
+    "schema_version": 1,
+    "created_at": "2026-07-07T04:42:47.377252Z",
+    "harbor": {
+        "version": "0.13.0",
+        "is_editable": false
+    },
+    "invocation": [
+        "/Users/ivanleo/.local/bin/harbor",
+        "run",
+        "-p",
+        "tasks/hello-world",
+        "--agent-import-path",
+        "agents.opencode_binary_agent:OpenCodeBinaryAgent",
+        "-m",
+        "openai/google/gemini-3.5-flash",
+        "-n",
+        "1",
+        "--force-build",
+        "--ae",
+        "OPENAI_API_KEY=kagg****g==",
+        "--ae",
+        "OPENAI_BASE_URL=https://mp-staging.kaggle.net/models/openapi",
+        "--allow-agent-host",
+        "mp-staging.kaggle.net",
+        "-y"
+    ],
+    "n_concurrent_trials": 1,
+    "retry": {
+        "max_retries": 0,
+        "exclude_exceptions": [
+            "VerifierTimeoutError",
+            "RewardFileEmptyError",
+            "VerifierOutputParseError",
+            "AgentTimeoutError",
+            "RewardFileNotFoundError"
+        ],
+        "wait_multiplier": 1.0,
+        "min_wait_sec": 1.0,
+        "max_wait_sec": 60.0
+    },
+    "trials": [
+        {
+            "task": {
+                "name": "hello-world",
+                "type": "local",
+                "digest": "sha256:d6f52c75fe1a7ca0264e8b90000c5aef926d0bbe18d767aa0e832db4d3d87768",
+                "path": "tasks/hello-world"
+            },
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "import_path": "agents.opencode_binary_agent:OpenCodeBinaryAgent",
+                "model_name": "openai/google/gemini-3.5-flash",
+                "skills": [],
+                "extra_allowed_hosts": [
+                    "mp-staging.kaggle.net"
+                ],
+                "kwargs": {},
+                "env": {
+                    "OPENAI_API_KEY": "kagg****g==",
+                    "OPENAI_BASE_URL": "https://mp-staging.kaggle.net/models/openapi"
+                },
+                "mcp_servers": []
+            },
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": true,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "env": {},
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "env": {},
+                "disable": false
+            }
+        }
+    ]
+}

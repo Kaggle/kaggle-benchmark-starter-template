@@ -1,0 +1,62 @@
+{
+  "schema_version": "ATIF-v1.6",
+  "session_id": "ses_0c51cd225ffe9i6c8DOhqE0bMT",
+  "agent": {
+    "name": "opencode-binary",
+    "version": "1.17.14",
+    "model_name": "openai/google/gemini-3.5-flash"
+  },
+  "steps": [
+    {
+      "step_id": 1,
+      "source": "user",
+      "message": "Create a file at `/app/hello.txt` containing exactly:\n\n```text\nHello, world!\n```\n"
+    },
+    {
+      "step_id": 2,
+      "timestamp": "2026-07-07T04:43:16.539000+00:00",
+      "source": "agent",
+      "model_name": "openai/google/gemini-3.5-flash",
+      "message": "(tool use)",
+      "tool_calls": [
+        {
+          "tool_call_id": "mp_fc_0_27oi7gsmhyuos",
+          "function_name": "write",
+          "arguments": {
+            "content": "Hello, world!\n",
+            "filePath": "/app/hello.txt",
+            "signature": "AY89a18wxcWm4aTIxb9/BM3ma+/YsciphupkldzAer6ZYzReh87oyEYx2CEUblTVKA8="
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "mp_fc_0_27oi7gsmhyuos",
+            "content": "Wrote file successfully."
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 8023,
+        "completion_tokens": 29
+      }
+    },
+    {
+      "step_id": 3,
+      "timestamp": "2026-07-07T04:43:17.611000+00:00",
+      "source": "agent",
+      "model_name": "openai/google/gemini-3.5-flash",
+      "message": "I have created the file `/app/hello.txt` with the requested content.",
+      "metrics": {
+        "prompt_tokens": 8052,
+        "completion_tokens": 17
+      }
+    }
+  ],
+  "final_metrics": {
+    "total_prompt_tokens": 16075,
+    "total_completion_tokens": 46,
+    "total_steps": 3
+  }
+}

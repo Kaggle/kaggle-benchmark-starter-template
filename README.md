@@ -164,11 +164,13 @@ harbor run \
 ```
 
 You can also run the same task with your own custom agent. This repo includes a
-minimal Antigravity SDK example:
+minimal Antigravity SDK example and an OpenCode binary-agent example:
 
 - `agents/antigravity_agent.py`: Harbor agent adapter imported by `harbor run`.
 - `agents/antigravity_runner.py`: uv script uploaded into the task container to
   run the Antigravity SDK.
+- `agents/opencode_binary_agent.py`: installed-agent example that installs the
+  `opencode` CLI binary, runs it, and converts its JSONL output to ATIF.
 
 ```bash
 harbor run \
@@ -178,8 +180,19 @@ harbor run \
   --ae GEMINI_API_KEY="${GEMINI_API_KEY}"
 ```
 
+```bash
+harbor run \
+  -p tasks/hello-world \
+  --agent-import-path agents.opencode_binary_agent:OpenCodeBinaryAgent \
+  -m google/gemini-3.5-flash \
+  --ae GEMINI_API_KEY="${GEMINI_API_KEY}"
+```
+
 Use this loop to validate the task definition, Docker environment, verifier,
 artifacts, agent loop, and model access.
+
+Example successful Harbor outputs are committed under `jobs/mini-swe-agent`,
+`jobs/opencode-binary`, and `jobs/antigravity`.
 
 After your Kaggle organization is approved and you have model proxy credentials,
 you can run the same task through the Kaggle model proxy:

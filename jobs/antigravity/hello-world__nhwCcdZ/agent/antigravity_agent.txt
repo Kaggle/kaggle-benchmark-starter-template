@@ -1,0 +1,15 @@
+Downloading pydantic-core (1.9MiB)
+Downloading google-antigravity (37.1MiB)
+Downloading cryptography (4.1MiB)
+ Downloaded pydantic-core
+ Downloaded cryptography
+ Downloaded google-antigravity
+Installed 45 packages in 16ms
+Starting Antigravity SDK Agent with instruction: Create a file at `/app/hello.txt` containing exactly:
+
+```text
+Hello, world!
+```
+...
+Using model: gemini-3.5-flash
+Agent completed. Trajectory saved to /logs/agent/trajectory.json
