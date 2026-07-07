@@ -2,9 +2,9 @@
 
 ## Kaggle CLI Auth
 
-Create a Kaggle organization for the benchmark publisher account first.
-Approval can take around 24 hours and is needed for inference credits. While
-waiting, continue authoring and debugging the benchmark locally with Harbor.
+Drop an email to Ivan at ileo@google.com for extra quota and to create a kaggle organisation, see docs [here](https://www.kaggle.com/docs/organizations).  
+
+While waiting, continue authoring and debugging the benchmark locally with Harbor.
 
 Install and authenticate the Kaggle CLI with uv:
 
