@@ -1,0 +1,101 @@
+{
+  "schema_version": "ATIF-v1.2",
+  "session_id": "c58b2eae-d866-42d5-8363-991bb1449c2d",
+  "agent": {
+    "name": "mini-swe-agent",
+    "version": "2.4.5",
+    "model_name": "openai/google/gemini-3.5-flash",
+    "extra": {
+      "original_format": "mini-swe-agent-1.1",
+      "agent_config": {
+        "system_template": "You are a helpful assistant that can interact with a computer.\n",
+        "instance_template": "Please solve this issue: {{task}}\n\nYou can execute bash commands and edit files to implement the necessary changes.\n\n## Recommended Workflow\n\nThis workflow should be done step-by-step so that you can iterate on your changes and any possible problems.\n\n1. Analyze the codebase by finding and reading relevant files\n2. Create a script to reproduce the issue\n3. Edit the source code to resolve the issue\n4. Verify your fix works by running your script again\n5. Test edge cases to ensure your fix is robust\n6. Submit your changes and finish your work by issuing the following command: `echo COMPLETE_TASK_AND_SUBMIT_FINAL_OUTPUT`.\n   Do not combine it with any other command. <important>After this command, you cannot continue working on this task.</important>\n\n## Command Execution Rules\n\nYou are operating in an environment where\n\n1. You issue at least one command\n2. The system executes the command(s) in a subshell\n3. You see the result(s)\n4. You write your next command(s)\n\nEach response should include:\n\n1. **Reasoning text** where you explain your analysis and plan\n2. At least one tool call with your command\n\n**CRITICAL REQUIREMENTS:**\n\n- Your response SHOULD include reasoning text explaining what you're doing\n- Your response MUST include AT LEAST ONE bash tool call\n- Directory or environment variable changes are not persistent. Every action is executed in a new subshell.\n- However, you can prefix any action with `MY_ENV_VAR=MY_VALUE cd /path/to/working/dir && ...` or write/load environment variables from files\n- Submit your changes and finish your work by issuing the following command: `echo COMPLETE_TASK_AND_SUBMIT_FINAL_OUTPUT`.\n  Do not combine it with any other command. <important>After this command, you cannot continue working on this task.</important>\n\nExample of a CORRECT response:\n<example_response>\nI need to understand the structure of the repository first. Let me check what files are in the current directory to get a better understanding of the codebase.\n\n[Makes bash tool call with {\"command\": \"ls -la\"} as arguments]\n</example_response>\n\n<system_information>\n{{system}} {{release}} {{version}} {{machine}}\n</system_information>\n\n## Useful command examples\n\n### Create a new file:\n\n```bash\ncat <<'EOF' > newfile.py\nimport numpy as np\nhello = \"world\"\nprint(hello)\nEOF\n```\n\n### Edit files with sed:\n\n{%- if system == \"Darwin\" -%}\n<important>\nYou are on MacOS. For all the below examples, you need to use `sed -i ''` instead of `sed -i`.\n</important>\n{%- endif -%}\n\n```bash\n# Replace all occurrences\nsed -i 's/old_string/new_string/g' filename.py\n\n# Replace only first occurrence\nsed -i 's/old_string/new_string/' filename.py\n\n# Replace first occurrence on line 1\nsed -i '1s/old_string/new_string/' filename.py\n\n# Replace all occurrences in lines 1-10\nsed -i '1,10s/old_string/new_string/g' filename.py\n```\n\n### View file content:\n\n```bash\n# View specific lines with numbers\nnl -ba filename.py | sed -n '10,20p'\n```\n\n### Any other command you want to run\n\n```bash\nanything\n```\n",
+        "step_limit": 0,
+        "cost_limit": 0.0,
+        "wall_time_limit_seconds": 0,
+        "max_consecutive_format_errors": 3,
+        "output_path": "/logs/agent/mini-swe-agent.trajectory.json",
+        "mode": "yolo",
+        "whitelist_actions": [],
+        "confirm_exit": false
+      }
+    }
+  },
+  "steps": [
+    {
+      "step_id": 1,
+      "timestamp": "2026-07-07T01:41:51.929244+00:00",
+      "source": "system",
+      "message": "You are a helpful assistant that can interact with a computer."
+    },
+    {
+      "step_id": 2,
+      "timestamp": "2026-07-07T01:41:51.929299+00:00",
+      "source": "user",
+      "message": "Please solve this issue: Create a file at `/app/hello.txt` containing exactly:\n\n```text\nHello, world!\n```\n\n\nYou can execute bash commands and edit files to implement the necessary changes.\n\n## Recommended Workflow\n\nThis workflow should be done step-by-step so that you can iterate on your changes and any possible problems.\n\n1. Analyze the codebase by finding and reading relevant files\n2. Create a script to reproduce the issue\n3. Edit the source code to resolve the issue\n4. Verify your fix works by running your script again\n5. Test edge cases to ensure your fix is robust\n6. Submit your changes and finish your work by issuing the following command: `echo COMPLETE_TASK_AND_SUBMIT_FINAL_OUTPUT`.\n   Do not combine it with any other command. <important>After this command, you cannot continue working on this task.</important>\n\n## Command Execution Rules\n\nYou are operating in an environment where\n\n1. You issue at least one command\n2. The system executes the command(s) in a subshell\n3. You see the result(s)\n4. You write your next command(s)\n\nEach response should include:\n\n1. **Reasoning text** where you explain your analysis and plan\n2. At least one tool call with your command\n\n**CRITICAL REQUIREMENTS:**\n\n- Your response SHOULD include reasoning text explaining what you're doing\n- Your response MUST include AT LEAST ONE bash tool call\n- Directory or environment variable changes are not persistent. Every action is executed in a new subshell.\n- However, you can prefix any action with `MY_ENV_VAR=MY_VALUE cd /path/to/working/dir && ...` or write/load environment variables from files\n- Submit your changes and finish your work by issuing the following command: `echo COMPLETE_TASK_AND_SUBMIT_FINAL_OUTPUT`.\n  Do not combine it with any other command. <important>After this command, you cannot continue working on this task.</important>\n\nExample of a CORRECT response:\n<example_response>\nI need to understand the structure of the repository first. Let me check what files are in the current directory to get a better understanding of the codebase.\n\n[Makes bash tool call with {\"command\": \"ls -la\"} as arguments]\n</example_response>\n\n<system_information>\nLinux 6.10.14-linuxkit #1 SMP Thu Oct 24 19:28:55 UTC 2024 aarch64\n</system_information>\n\n## Useful command examples\n\n### Create a new file:\n\n```bash\ncat <<'EOF' > newfile.py\nimport numpy as np\nhello = \"world\"\nprint(hello)\nEOF\n```\n\n### Edit files with sed:```bash\n# Replace all occurrences\nsed -i 's/old_string/new_string/g' filename.py\n\n# Replace only first occurrence\nsed -i 's/old_string/new_string/' filename.py\n\n# Replace first occurrence on line 1\nsed -i '1s/old_string/new_string/' filename.py\n\n# Replace all occurrences in lines 1-10\nsed -i '1,10s/old_string/new_string/g' filename.py\n```\n\n### View file content:\n\n```bash\n# View specific lines with numbers\nnl -ba filename.py | sed -n '10,20p'\n```\n\n### Any other command you want to run\n\n```bash\nanything\n```"
+    },
+    {
+      "step_id": 3,
+      "timestamp": "2026-07-07T01:41:51.929345+00:00",
+      "source": "agent",
+      "model_name": "openai/google/gemini-3.5-flash",
+      "message": "I will create the file at `/app/hello.txt` containing exactly `Hello, world!` as specified in the prompt. I will use a bash command with `cat <<'EOF'` to write the exact string to the desired path. Let's create the file and then verify its contents.",
+      "reasoning_content": "I will create the file at `/app/hello.txt` containing exactly `Hello, world!` as specified in the prompt. I will use a bash command with `cat <<'EOF'` to write the exact string to the desired path. Let's create the file and then verify its contents.",
+      "tool_calls": [
+        {
+          "tool_call_id": "mp_fc_0_dddo3kuwlal8",
+          "function_name": "bash",
+          "arguments": {
+            "command": "mkdir -p /app && cat <<'EOF' > /app/hello.txt\nHello, world!\nEOF\ncat /app/hello.txt",
+            "signature": "AY89a19PUD4zumX/zFyNRkjUWZWC0G+ZAXSv22xJv9IbwUARRYcDK8Twl/mTYBHD230="
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "content": "{\n  \"returncode\": 0,\n  \"output\": \"Hello, world!\\n\"\n}"
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 810,
+        "completion_tokens": 107
+      }
+    },
+    {
+      "step_id": 4,
+      "timestamp": "2026-07-07T01:41:51.929392+00:00",
+      "source": "agent",
+      "model_name": "openai/google/gemini-3.5-flash",
+      "message": "The file has been created successfully and its contents are exactly `Hello, world!` with a newline. I will now submit the final output to complete the task.",
+      "reasoning_content": "The file has been created successfully and its contents are exactly `Hello, world!` with a newline. I will now submit the final output to complete the task.",
+      "tool_calls": [
+        {
+          "tool_call_id": "mp_fc_0_hfykez01zdl6",
+          "function_name": "bash",
+          "arguments": {
+            "command": "echo COMPLETE_TASK_AND_SUBMIT_FINAL_OUTPUT",
+            "signature": "AY89a189nZuT09kfxrzuVvPWUADp5J5RqsfJ8ac1+kQHhvhvtTP6OJZEQBrcicT4E94="
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "content": "{\n  \"returncode\": -1,\n  \"output\": \"\", \"exception_info\": \"action was not executed\"\n}"
+          }
+        ]
+      },
+      "metrics": {
+        "prompt_tokens": 924,
+        "completion_tokens": 58
+      }
+    }
+  ],
+  "notes": "Converted from mini-swe-agent trajectory format to ATIF",
+  "final_metrics": {
+    "total_prompt_tokens": 1734,
+    "total_completion_tokens": 165
+  }
+}

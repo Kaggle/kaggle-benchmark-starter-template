@@ -1,0 +1,14 @@
+[
+  {
+    "source": "/logs/artifacts",
+    "destination": "artifacts",
+    "type": "directory",
+    "status": "empty"
+  },
+  {
+    "source": "/app/hello.txt",
+    "destination": "artifacts/hello.txt",
+    "type": "file",
+    "status": "ok"
+  }
+]

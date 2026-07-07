@@ -1,0 +1,116 @@
+{
+    "id": "e9318610-f715-426e-9fb8-122a6da330c5",
+    "task_name": "ivanleomk/hello-world",
+    "trial_name": "hello-world__5vGycd7",
+    "trial_uri": "file:///Users/ivanleo/Documents/coding/kaggle-template-starter/jobs/hello-world-mini-swe-model-proxy-gemini-3-5-flash/hello-world__5vGycd7",
+    "task_id": {
+        "path": "tasks/hello-world"
+    },
+    "source": null,
+    "task_checksum": "c64d6a888ab110046e5e703eb505ab916b7dafc17707c3aa39d6b068bbd92934",
+    "config": {
+        "task": {
+            "path": "tasks/hello-world",
+            "git_url": null,
+            "git_commit_id": null,
+            "name": null,
+            "ref": null,
+            "overwrite": false,
+            "download_dir": null,
+            "source": null
+        },
+        "trial_name": "hello-world__5vGycd7",
+        "trials_dir": "jobs/hello-world-mini-swe-model-proxy-gemini-3-5-flash",
+        "timeout_multiplier": 1.0,
+        "agent_timeout_multiplier": null,
+        "verifier_timeout_multiplier": null,
+        "agent_setup_timeout_multiplier": null,
+        "environment_build_timeout_multiplier": null,
+        "agent": {
+            "name": "mini-swe-agent",
+            "import_path": null,
+            "model_name": "openai/google/gemini-3.5-flash",
+            "skills": [],
+            "override_timeout_sec": null,
+            "override_setup_timeout_sec": null,
+            "max_timeout_sec": null,
+            "extra_allowed_hosts": [
+                "mp-staging.kaggle.net"
+            ],
+            "kwargs": {},
+            "env": {
+                "OPENAI_API_KEY": "kagg****olo",
+                "OPENAI_BASE_URL": "https://mp-staging.kaggle.net/models/openapi"
+            },
+            "mcp_servers": []
+        },
+        "environment": {
+            "type": "docker",
+            "import_path": null,
+            "force_build": true,
+            "delete": true,
+            "cpu_enforcement_policy": "auto",
+            "memory_enforcement_policy": "auto",
+            "override_cpus": null,
+            "override_memory_mb": null,
+            "override_storage_mb": null,
+            "override_gpus": null,
+            "override_tpu": null,
+            "mounts": null,
+            "extra_docker_compose": [],
+            "env": {},
+            "kwargs": {},
+            "extra_allowed_hosts": []
+        },
+        "verifier": {
+            "override_timeout_sec": null,
+            "max_timeout_sec": null,
+            "env": {},
+            "disable": false
+        },
+        "artifacts": [],
+        "extra_instruction_paths": [],
+        "job_id": "a1667fc2-8bbb-4d98-aa4f-faff1303de23"
+    },
+    "agent_info": {
+        "name": "mini-swe-agent",
+        "version": "2.4.5",
+        "model_info": {
+            "name": "google/gemini-3.5-flash",
+            "provider": "openai"
+        }
+    },
+    "agent_result": {
+        "n_input_tokens": 1734,
+        "n_cache_tokens": 0,
+        "n_output_tokens": 165,
+        "cost_usd": 0.0,
+        "rollout_details": null,
+        "metadata": null
+    },
+    "verifier_result": {
+        "rewards": {
+            "reward": 1.0
+        }
+    },
+    "exception_info": null,
+    "started_at": "2026-07-07T01:41:11.476980Z",
+    "finished_at": "2026-07-07T01:42:10.037982Z",
+    "environment_setup": {
+        "started_at": "2026-07-07T01:41:11.495220Z",
+        "finished_at": "2026-07-07T01:41:12.900965Z"
+    },
+    "agent_setup": {
+        "started_at": "2026-07-07T01:41:12.901048Z",
+        "finished_at": "2026-07-07T01:41:43.631822Z"
+    },
+    "agent_execution": {
+        "started_at": "2026-07-07T01:41:43.632028Z",
+        "finished_at": "2026-07-07T01:41:51.591008Z"
+    },
+    "verifier": {
+        "started_at": "2026-07-07T01:41:52.204979Z",
+        "finished_at": "2026-07-07T01:41:58.828876Z"
+    },
+    "step_results": null
+}

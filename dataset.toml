@@ -1,0 +1,16 @@
+# Dataset manifest for ivanleomk/kaggle-benchmark-starter-template
+# Add tasks using: harbor add <org>/<name>
+# Publish using: harbor publish
+
+[dataset]
+name = "ivanleomk/kaggle-benchmark-starter-template"
+description = "Starter Harbor dataset with a hello world task."
+keywords = []
+[[dataset.authors]]
+name = "Ivan Leo"
+
+
+[[tasks]]
+name = "ivanleomk/hello-world"
+digest = "sha256:400bb9824c6c7f57f31becc2f9e70d159bd4816bf3ee62d86b082400c0653022"
+
