@@ -13,9 +13,7 @@ agent to create `/app/hello.txt` with the content
 ## Configure Model Proxy
 
 Create a Kaggle organization for the benchmark publisher account by following
-the official Kaggle organization docs:
-
-<https://www.kaggle.com/docs/organizations>
+the [official Kaggle organization docs](https://www.kaggle.com/docs/organizations).
 
 Use the organization profile as the home for the datasets and benchmarks you
 publish. Organization approval usually takes around 24 hours and is required to
