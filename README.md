@@ -27,10 +27,16 @@ organization approval.
 
 ## Kaggle Organization Approval
 
-Create a Kaggle organization for the benchmark publisher account and make sure
-it is approved before publishing the final dataset and benchmark. Approval is
-only required for publishing; you can still install the CLI, generate model
-proxy credentials, and validate this repo locally while waiting.
+Create a Kaggle organization for the benchmark publisher account by following
+the official Kaggle organization docs:
+
+<https://www.kaggle.com/docs/organizations>
+
+Use the organization profile as the home for the datasets and benchmarks you
+publish. Make sure the organization is approved before publishing the final
+dataset and benchmark. Approval is only required for publishing; you can still
+install the CLI, generate model proxy credentials, and validate this repo
+locally while waiting.
 
 ## Repository Layout
 
