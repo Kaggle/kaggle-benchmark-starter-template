@@ -103,7 +103,7 @@ docker run --rm -it \
   --privileged \
   -v "$PWD/kaggle/working:/kaggle/working" \
   -v "harbor-dind-data:/var/lib/docker" \
-  -e KAGGLE_TASK_REPO_URL="https://github.com/ivanleomk/kaggle-benchmark-starter-template" \
+  -e KAGGLE_TASK_REPO_URL="git@github.com:Kaggle/kaggle-benchmark-starter-template.git" \
   -e KAGGLE_TASK_PATH="tasks/hello-world" \
   -e KAGGLE_HARBOR_AGENT="mini-swe-agent" \
   -e LLM_DEFAULT="openai/google/gemini-3.5-flash" \
