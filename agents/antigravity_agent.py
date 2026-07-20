@@ -109,11 +109,23 @@ class AntigravityAgent(BaseAgent):
         environment: BaseEnvironment,
         context: AgentContext,
     ) -> None:
-        gemini_api_key = self._extra_env.get("GEMINI_API_KEY") or os.environ.get(
-            "GEMINI_API_KEY"
+        gemini_api_key = (
+            self._extra_env.get("GEMINI_API_KEY")
+            or os.environ.get("GEMINI_API_KEY")
+            or self._extra_env.get("MODEL_PROXY_API_KEY")
+            or os.environ.get("MODEL_PROXY_API_KEY")
         )
         if not gemini_api_key:
-            raise ValueError("GEMINI_API_KEY must be set")
+            raise ValueError("GEMINI_API_KEY or MODEL_PROXY_API_KEY must be set")
+
+        base_url = (
+            self._extra_env.get("GEMINI_BASE_URL")
+            or os.environ.get("GEMINI_BASE_URL")
+            or self._extra_env.get("MODEL_PROXY_URL")
+            or os.environ.get("MODEL_PROXY_URL")
+            or self._extra_env.get("MODEL_PROXY_BASE_URL")
+            or os.environ.get("MODEL_PROXY_BASE_URL")
+        )
 
         model_name = self.model_name or self._extra_env.get("MODEL_NAME")
         if not model_name:
@@ -136,6 +148,8 @@ class AntigravityAgent(BaseAgent):
             "AGENT_LOGS_DIR": logs_dir,
             "TRAJECTORY_PATH": trajectory_path,
         }
+        if base_url:
+            env["GEMINI_BASE_URL"] = base_url
 
         skills_paths = []
         if self._load_skills:

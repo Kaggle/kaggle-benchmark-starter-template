@@ -39,13 +39,11 @@ async def run_agent(args: argparse.Namespace) -> None:
     from google.antigravity import Agent, LocalAgentConfig
     from google.antigravity.hooks import policy
     from google.antigravity.types import (
-        GeminiConfig,
-        GenerationConfig,
+        GeminiAPIEndpoint,
         McpSseServer,
         McpStdioServer,
         McpStreamableHttpServer,
-        ModelConfig,
-        ModelEntry,
+        ModelTarget,
         StepSource,
         StepStatus,
         ThinkingLevel,
@@ -54,10 +52,15 @@ async def run_agent(args: argparse.Namespace) -> None:
     logging.getLogger().setLevel(logging.ERROR)
 
     model = os.environ.get("MODEL_NAME")
-    api_key = os.environ.get("GEMINI_API_KEY")
+    api_key = os.environ.get("GEMINI_API_KEY") or os.environ.get("MODEL_PROXY_API_KEY")
+    base_url = (
+        os.environ.get("GEMINI_BASE_URL")
+        or os.environ.get("MODEL_PROXY_URL")
+        or os.environ.get("MODEL_PROXY_BASE_URL")
+    )
 
     if not api_key:
-        print("Error: GEMINI_API_KEY environment variable not set", file=sys.stderr)
+        print("Error: GEMINI_API_KEY or MODEL_PROXY_API_KEY environment variable not set", file=sys.stderr)
         sys.exit(1)
     if not model:
         print("Error: MODEL_NAME environment variable not set", file=sys.stderr)
@@ -95,22 +98,18 @@ async def run_agent(args: argparse.Namespace) -> None:
                     )
                 )
 
-    reasoning_effort_str = os.environ.get("REASONING_EFFORT", "medium").lower()
-    thinking_level_map = {
-        "minimal": ThinkingLevel.MINIMAL,
-        "low": ThinkingLevel.LOW,
-        "medium": ThinkingLevel.MEDIUM,
-        "high": ThinkingLevel.HIGH,
-    }
-    thinking_level = thinking_level_map.get(reasoning_effort_str)
-
-    default_model_entry = ModelEntry(
-        name=normalized_model,
-        generation=GenerationConfig(thinking_level=thinking_level),
+    endpoint = (
+        GeminiAPIEndpoint(
+            base_url=base_url,
+            api_key=api_key,
+        )
+        if base_url
+        else None
     )
-    gemini_config = GeminiConfig(
-        api_key=api_key,
-        models=ModelConfig(default=default_model_entry),
+    model_target = (
+        ModelTarget(name=normalized_model, endpoint=endpoint)
+        if endpoint
+        else normalized_model
     )
 
     skills_paths_list = None
@@ -122,7 +121,8 @@ async def run_agent(args: argparse.Namespace) -> None:
             pass
 
     config = LocalAgentConfig(
-        gemini_config=gemini_config,
+        model=model_target,
+        api_key=api_key,
         mcp_servers=mcp_servers_list,
         policies=[policy.allow_all()],
         skills_paths=skills_paths_list,
