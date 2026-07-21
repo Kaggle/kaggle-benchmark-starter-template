@@ -102,6 +102,7 @@ async def run_agent(args: argparse.Namespace) -> None:
         GeminiAPIEndpoint(
             base_url=base_url,
             api_key=api_key,
+            http_headers={"X-Goog-Api-Key": api_key} if "/genai" in base_url else None,
         )
         if base_url
         else None
